@@ -1,0 +1,5 @@
+hello:
+  lol: hi
+  qwe: hi
+semver:
+  prefixwithv: false

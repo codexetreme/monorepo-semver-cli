@@ -11,3 +11,13 @@ semver tags for the standard `a/b/c/<semver_tag>`. This makes this cli a lot mor
 
 
 
+## Installation
+
+## Usage
+
+The cli is meant to used quite simply with the following commands:
+
+for a simple out of the box generation of the config file
+```bash
+monorepo-semver-cli --init 
+```

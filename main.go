@@ -1,24 +1,13 @@
 package main
 
 import (
-	"github.com/codexetreme/monorepo-semver-cli/cmd"
-	"github.com/codexetreme/monorepo-semver-cli/error_roster"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra/doc"
+	"monorepo-semver-cli/cmd"
+	"monorepo-semver-cli/error_roster"
 	"os"
 )
 
-type loggingOptions struct {
-	outputLogsInJson bool
-	logLevel         string
-}
-
-type semverOptions struct {
-	prefixWithV bool
-}
-
-type options struct {
-}
 
 func main() {
 	//log.SetFormatter(&log.JSONFormatter{})
