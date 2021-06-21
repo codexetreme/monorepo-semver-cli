@@ -1,0 +1,11 @@
+SHELL=/bin/bash
+SELF = $(MAKE)
+
+## debug build
+debug/build:
+	@go build
+
+## clean debug artifacts
+debug/clean:
+	@rm monorepo-semver-cli
+
