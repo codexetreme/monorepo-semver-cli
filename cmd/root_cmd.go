@@ -1,31 +1,30 @@
 package cmd
 
 import (
-    "fmt"
-    log "github.com/sirupsen/logrus"
-    "github.com/spf13/cobra"
-    "github.com/spf13/pflag"
-    "github.com/spf13/viper"
-    "monorepo-semver-cli/cmd/initializeCmd"
-    "strings"
-    "github.com/AlecAivazis/survey/v2"
+	"fmt"
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
+	"github.com/spf13/viper"
+	"monorepo-semver-cli/cmd/initializeCmd"
+	"strings"
 )
 
 type cliConfig struct {
-    fileName string
-    containingFolder string
+	fileName         string
+	containingFolder string
 }
 
 type RootCmd struct {
 	Cmd *cobra.Command
 	//flags
 	CfgFileLocation string
-    jsonLogs bool
-    logLevel string
+	jsonLogs        bool
+	logLevel        string
 
 	// config options
 	cfgOptions cliConfig
-	envPrefix       string
+	envPrefix  string
 	// if set, creates the base config files with the some sane defaults
 	initMode bool
 }
@@ -36,9 +35,9 @@ func (c RootCmd) GetCmd() *cobra.Command {
 func NewRootCmd() *RootCmd {
 	c := &RootCmd{}
 	c.cfgOptions = cliConfig{
-        fileName:         "cli-config",
-        containingFolder: ".msc",
-    }
+		fileName:         "cli-config",
+		containingFolder: ".msc",
+	}
 	c.Cmd = &cobra.Command{
 		Use:   "mono-repo-tag",
 		Short: "semver compatible cli for monorepos",
@@ -46,15 +45,15 @@ func NewRootCmd() *RootCmd {
 		`,
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 			// You can bind cobra and viper in a few locations,
-		    //but PersistencePreRunE on the root command works well
+			//but PersistencePreRunE on the root command works well
 			return c.initializeConfig(cmd)
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			if c.initMode {
-                log.Info("initializing config... ")
-                createConfig()
-                return nil
+				log.Info("initializing config... ")
+				createConfig()
+				return nil
 			}
 			return nil
 		},
@@ -62,7 +61,7 @@ func NewRootCmd() *RootCmd {
 	c.Cmd.Flags().BoolVar(&c.initMode, "init", false, "generate the cli configuration file (default: false)")
 	c.Cmd.PersistentFlags().BoolVar(&c.jsonLogs, "json-logs", false, "print logs in JSON format (default: false)")
 	c.Cmd.PersistentFlags().StringVar(&c.logLevel, "init", "INFO", "set the logging level (default: INFO) (valid: INFO, DEBUG)")
-	c.Cmd.PersistentFlags().StringVar(&c.CfgFileLocation, "config", "", "config file (default: " + c.cfgOptions.containingFolder + "/" + c.cfgOptions.fileName +")")
+	c.Cmd.PersistentFlags().StringVar(&c.CfgFileLocation, "config", "", "config file (default: "+c.cfgOptions.containingFolder+"/"+c.cfgOptions.fileName+")")
 	c.addCmds()
 	return c
 }
@@ -124,8 +123,8 @@ func (c *RootCmd) initializeConfig(cmd *cobra.Command) error {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
 			// Config file not found; ignore error if desired
 			log.
-			    WithFields(log.Fields{}).
-			    Warn("Did not find configuration file, using options passed on the cli, or ENV vars ")
+				WithFields(log.Fields{}).
+				Warn("Did not find configuration file, using options passed on the cli, or ENV vars ")
 		} else {
 			// Config file was found but another error was produced
 		}

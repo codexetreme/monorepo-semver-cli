@@ -26,10 +26,5 @@ func NewCmd() *Cmd {
 		//to quickly create a Cobra application.`,
 	}
 
-	// This is for adding subcommands to your command. Refer subcommands.go
-	for _, command := range getSubCommandList() {
-		c.Cmd.AddCommand(command.GetCmd())
-	}
-
 	return c
 }
