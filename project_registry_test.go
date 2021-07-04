@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	prj1         = NewProject("Prj1", "prj")
-	prj2         = NewProject("Prj2", "prj")
+	prj1, _      = NewProject("Prj1", "prj", "a")
+	prj2, _      = NewProject("Prj2", "prj", "b")
 	testRegistry = NewRegistry(SLASH)
 )
 
@@ -53,7 +53,7 @@ func TestRegistry_AddProject(t *testing.T) {
 func TestRegistry_RemoveProject(t *testing.T) {
 	log.SetLevel(log.InfoLevel)
 	// delete valid Object
-	t.Run("vaild id", func(t *testing.T) {
+	t.Run("vaild Id", func(t *testing.T) {
 		testRegistry.ClearRegistry()
 		_ = testRegistry.AddProject(prj1)
 		objectsInRegistry := len(testRegistry.projects)
@@ -64,11 +64,11 @@ func TestRegistry_RemoveProject(t *testing.T) {
 
 	})
 	// delete invalid Object
-	t.Run("invaild id", func(t *testing.T) {
+	t.Run("invaild Id", func(t *testing.T) {
 		testRegistry.ClearRegistry()
 		_ = testRegistry.AddProject(prj1)
 		objectsInRegistry := len(testRegistry.projects)
-		testRegistry.RemoveProject("non existent id")
+		testRegistry.RemoveProject("non existent Id")
 		if objectsInRegistry-1 == len(testRegistry.projects) {
 			t.Errorf("object was deleted even when it did not exist")
 		}
@@ -126,14 +126,14 @@ func TestRegistry_GetProjectById(t *testing.T) {
 		wantErr  bool
 	}{
 		{
-			name:     "valid project id",
+			name:     "valid project Id",
 			registry: testRegistry,
 			args:     args{id: prj1.id},
 			want:     prj1,
 			wantErr:  false,
 		},
 		{
-			name:     "valid project id",
+			name:     "valid project Id",
 			registry: testRegistry,
 			args:     args{id: prj2.id},
 			wantErr:  true,
@@ -152,4 +152,13 @@ func TestRegistry_GetProjectById(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestNewProject(t *testing.T) {
+	t.Run("valid project creation", func(t *testing.T) {
+		_, err := NewProject("test_1", "test_1", ".")
+		if err != nil {
+			t.Errorf("failed to create project: %s", err)
+		}
+	})
 }

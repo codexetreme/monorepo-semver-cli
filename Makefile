@@ -4,7 +4,15 @@ include Makefile.helpers
 include Makefile.debug
 
 
+dep:
+	go get -u
+	go mod tidy
 
+lint:
+	golangci-lint run -v ./...
+
+build: lint
+	go build
 
 
 ## get some statistics about the repository
