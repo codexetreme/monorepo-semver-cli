@@ -1,6 +1,8 @@
 package main
 
-import "path"
+import (
+	"path"
+)
 
 // config for all operations
 
@@ -37,17 +39,17 @@ var (
 	DefaultConfigOptions = GlobalConfigOptions{
 		CliConfigOptions: CliConfigOptions{
 			ConfigFileOptions: ConfigFileOptions{
-				configFileName:    "cli.config.yml",
-				configDirName:     ".msc",
-				configDirLocation: ".",
+				ConfigFileName:    "cli.config.yml",
+				ConfigDirName:     ".msc",
+				ConfigDirLocation: ".",
 			},
 			envPrefix: "MSC",
 		},
 		ProjectConfigOptions: ProjectConfigOptions{
 			ConfigFileOptions{
-				configFileName:    "projects.config.yml",
-				configDirName:     ".msc",
-				configDirLocation: ".",
+				ConfigFileName:    "projects.config.yml",
+				ConfigDirName:     ".msc",
+				ConfigDirLocation: ".",
 			},
 		},
 	}
