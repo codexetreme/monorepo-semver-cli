@@ -83,10 +83,11 @@ type (
 		SetDelim(delim string) error
 		ClearRegistry()
 	}
-	RegistryPersistance interface {
+	RegistryPersistence interface {
 		toYaml() []byte
 		save(writer io.Writer)
-		generate()
+		load(location string)
+		generate(location string)
 	}
 )
 
