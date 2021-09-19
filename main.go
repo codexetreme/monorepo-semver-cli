@@ -1,12 +1,12 @@
 package main
 
 import (
-    "os"
+	"os"
 
-    "github.com/codexetreme/monorepo-semver-cli/cmd"
-    "github.com/codexetreme/monorepo-semver-cli/error_roster"
-    log "github.com/sirupsen/logrus"
-    "github.com/spf13/cobra/doc"
+	"github.com/codexetreme/monorepo-semver-cli/cmd"
+	"github.com/codexetreme/monorepo-semver-cli/error_roster"
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/cobra/doc"
 )
 
 type loggingOptions struct {
@@ -22,8 +22,8 @@ type options struct {
 }
 
 func main() {
-    DrawBox()
-    DrawList()
+	DrawBox()
+	DrawList()
 }
 
 func setupCobra() {
@@ -37,3 +37,5 @@ func setupCobra() {
 	error_roster.CheckErr(rootCmd.Execute())
 }
 
+// golden test
+// tag repo with semver
